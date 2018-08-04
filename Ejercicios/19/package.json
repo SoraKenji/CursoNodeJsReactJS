@@ -1,16 +1,22 @@
 {
-  "name": "uno",
+  "name": "19",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "./node_modules/.bin/babel-node --presets=env src"
+    "start": "./node_modules/.bin/babel-node --presets=env src",
+    "say-hello": "echo 'Hello World'",
+    "e": "npm start e",
+    "pi": "npm start pi"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0"
+  },
+  "dependencies": {
+    "moment": "^2.22.2"
   }
 }
