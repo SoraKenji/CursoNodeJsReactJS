@@ -1,0 +1,12 @@
+{"nombre": "perro qlo_01", "edad": "18"}
+{"nombre": "perro qlo_02", "edad": "19"}
+{"nombre": "perro qlo_03", "edad": "20"}
+{"nombre": "perro qlo_04", "edad": "21"}
+{"nombre": "perro qlo_05", "edad": "22"}
+{"nombre": "perro qlo_06", "edad": "24"}
+{"nombre": "perro qlo_07", "edad": "25"}
+{"nombre": "perro qlo_08", "edad": "26"}
+{"nombre": "perro qlo_09", "edad": "27"}
+{"nombre": "perro qlo_10", "edad": "28"}
+{"nombre": "perro qlo_11", "edad": "29"}
+{"nombre": "perro qlo_12", "edad": "30"}
