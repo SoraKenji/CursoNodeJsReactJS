@@ -1,6 +1,7 @@
 import helper from './helper';
-const _ = require('lodash');
 const request = require('request');
+import * as fs from 'fs';
+import * as readline from 'readline'; 
 
 let argumento1 = process.argv[2];
 
@@ -12,41 +13,60 @@ if(process.argv.length >= 4){
 
 switch(argumento1){
     case "posts":
-        request('https://jsonplaceholder.typicode.com/posts/' + argumento2, 
-            function(err, res, body) {  
-                let post = JSON.parse(body);
-
-                request('https://jsonplaceholder.typicode.com/users/' + post.userId, 
-                    function(err, res, body) {  
-                        let userPost = JSON.parse(body);
-                        post.user = userPost;
-                        console.log(post);
-                    }
-                );
-            }
-        );
-        break;
+    helper.makeRequest("posts/" + argumento2, function(err, res, body) {  
+        let post = JSON.parse(body);
+        helper.makeRequest("users/" + post.userId, function(err, res, body) {  
+            let userPost = JSON.parse(body);
+            post.user = userPost;
+        })
+    })
+    break;
+   
     case "comments":
-        request('https://jsonplaceholder.typicode.com/comments/' + argumento2, 
-            function(err, res, body) {  
-                let comment = JSON.parse(body);
-                request('https://jsonplaceholder.typicode.com/posts/' + comment.postId, 
-                    function(err, res, body) {  
-                        let postComment = JSON.parse(body);
-                        request('https://jsonplaceholder.typicode.com/users/' + postComment.userId, 
-                            function(err, res, body) {  
-                                let userPost = JSON.parse(body);
-                                postComment.user = userPost;
-                                comment.post = postComment;
-                                console.log(comment);
-                            }
-                        );
-                    }
-                );
-            }
-        );
+        helper.makeRequest("comments/" + argumento2, function(err, res, body) {  
+            let comment = JSON.parse(body);
+            helper.makeRequest("posts/"+post.userIdm, function(err, res, body) {  
+                let userPost = JSON.parse(body);
+                post.user = userPost;
+                console.log(post);
+            })
+        });
         break;
     case "albums":
-        
+        break;
+    case "9":
+        helper.makeRequest("users/", function(err, res, body) {  
+            let users = JSON.parse(body);
+            console.log(users);
+        });
+        break;
+    case "10":
+        helper.makeRequest("posts/", function(err, res, body) {  
+            let posts = JSON.parse(body);
+            console.log(posts);
+        });
+        break;
+    case "11":
+        helper.makeRequest("posts/", function(err, res, body) {  
+            let post = JSON.parse(body);
+            helper.makeRequest("users/", function(err, res, body) {  
+                let userPost = JSON.parse(body);
+                post.forEach(element => {
+                    let user;
+                    userPost.forEach(user_element => {
+                        if(element.userId == user_element.id)
+                            user = user_element;
+                    });
+                    element.user = user;
+                });
+                console.log(post);
+                fs.writeFile("nombreArchivo.txt", JSON.stringify(post), { flag: 'w' }, (err) => {
+                    if (err) {
+                        throw err;
+                    }
+                    console.log("guardado");
+                });
+            })
+        })
         break;
 }
