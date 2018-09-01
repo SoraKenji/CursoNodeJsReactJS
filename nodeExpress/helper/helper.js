@@ -7,9 +7,12 @@ const toDoRequest = (options) => rp(options)
     });
 
 const getPosts = async (res, options) => {
-    let data = await toDoRequest(options);
-    
-    res.send(JSON.stringify(data, true));
+    try{
+        let data = await toDoRequest(options);
+        res.status(200).send(JSON.stringify(data, true));
+    }catch(err){
+        res.status(500).send();
+    }
 }
 
 exports.getPosts = getPosts;

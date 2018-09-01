@@ -1,8 +1,6 @@
 import * as fs from 'fs';
 import * as readline from 'readline'; 
-const rp = require('request');
 import { get } from "request";
-import { PerformanceObserver } from 'perf_hooks';
 
 const request = require('request');
 let argumento1 = process.argv[2];
@@ -35,7 +33,7 @@ const makeRequest = (mid) => {
 
 makeRequest(`${urlBase}/${argumento1}`).then(req => {
     let post = req;
-    fs.writeFile(nombreArchivo, post, { flag: 'w' }, (err) => {
+    fs.writeFile(nombreArchivo, JSON.stringify(post), { flag: 'w' }, (err) => {
         if (err) {
             throw err;
         }

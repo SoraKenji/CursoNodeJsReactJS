@@ -1,7 +1,5 @@
 import helper from './helper';
-const request = require('request');
 import * as fs from 'fs';
-import * as readline from 'readline'; 
 
 let argumento1 = process.argv[2];
 
@@ -22,7 +20,7 @@ switch(argumento1){
     })
     break;
     case "9":
-        helper.makeRequest("users/", function(err, res, body) {  
+        helper.makeRequest("users/", (err, res, body) => {  
             let users = JSON.parse(body);
             console.log(users);
         });

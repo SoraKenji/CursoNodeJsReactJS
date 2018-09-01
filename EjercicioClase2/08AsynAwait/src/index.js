@@ -1,7 +1,6 @@
 import * as fs from 'fs';
 import * as readline from 'readline'; 
 const rp = require('request-promise');
-import { PerformanceObserver } from 'perf_hooks';
 
 const request = require('request');
 let argumento1 = process.argv[2];
@@ -13,8 +12,6 @@ const urlBase = 'https://jsonplaceholder.typicode.com';
 const lineReader = readline.createInterface({
     input: fs.createReadStream(nombreArchivo),
 });
-
-
 
 const makeRequest = async () => {
     let response = await fnRequest();

@@ -1,6 +1,5 @@
 import * as fs from 'fs';
 import * as readline from 'readline'; 
-import { PerformanceObserver } from 'perf_hooks';
 
 const request = require('request');
 let argumento1 = process.argv[2];

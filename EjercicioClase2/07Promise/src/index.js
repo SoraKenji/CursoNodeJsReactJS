@@ -1,14 +1,9 @@
-const request = require('request');
-
 import helper from './helper';
 import * as fs from 'fs';
-import * as readline from 'readline'; 
-import { resolve } from 'url';
 
 let argumento1 = process.argv[2];
 
 let argumento2 = "";
-const urlBase = 'https://jsonplaceholder.typicode.com';
 
 if(process.argv.length >= 4){
     argumento2 = process.argv[3];
@@ -16,31 +11,46 @@ if(process.argv.length >= 4){
 
 switch(argumento1){
     case "posts":
-    helper.makeRequest("posts/" + argumento2).then(post => {
+    helper.makeRequest("posts/" + argumento2)
+    .then(post => {
         let resPost = post;
-        helper.makeRequest("users/" +  + post.userId).then(userz => {
+        helper.makeRequest("users/" +  + post.userId)
+        .then(userz => {
             let userPost = userz;
             resPost.user = userPost;
             console.log(resPost);
         })
+        .catch(err => {
+            console.log(err);
+        })
+    })
+    .catch(err => {
+        console.log(err);
     })
         break;
     case "9":
         helper.makeRequest("users/").then(userz => {
             console.log(userz);
         })
+        .catch(err => {
+            console.log(err);
+        })
         break;
     case "10":
         helper.makeRequest("posts/").then(postz => {  
             let posts = postz;
             console.log(posts);
+        })
+        .catch(err => {
+            console.log(err);
         });
         break;
     case "11":
-
-        helper.makeRequest("posts/").then(postz => {  
+        helper.makeRequest("posts/")
+        .then(postz => {  
             let post = postz;
-            helper.makeRequest("users/").then(userPostz => {  
+            helper.makeRequest("users/")
+            .then(userPostz => {  
                 let userPost = userPostz;
                 post.forEach(element => {
                     let user;
@@ -58,6 +68,12 @@ switch(argumento1){
                     console.log("guardado");
                 });
             })
+            .catch(err => {
+                console.log(err);
+            }) 
+        })
+        .catch(err => {
+            console.log(err);
         })
         break;
 }

@@ -1,10 +1,6 @@
-const request = require('request');
 const rp = require('request-promise');
 
-import helper from './helper';
 import * as fs from 'fs';
-import * as readline from 'readline'; 
-import { resolve } from 'url';
 
 let argumento1 = process.argv[2];
 

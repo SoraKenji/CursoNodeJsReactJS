@@ -1,4 +1,3 @@
-const request = require('request');
 import * as fs from 'fs';
 
 const rp = require('request-promise');
@@ -8,6 +7,9 @@ const toDoRequest = (options) => rp(options)
     .then(req => {
         let res = req;
         return res;
+    })
+    .catch(err => {
+        console.log(err);
     });
 
 
