@@ -37,10 +37,11 @@ switch(argumento1){
         });
         break;
     case "11":
-        helper.makeRequest("posts/", function(err, res, body) {  
-            let post = JSON.parse(body);
-            helper.makeRequest("users/", function(err, res, body) {  
-                let userPost = JSON.parse(body);
+
+        helper.makeRequest("posts/").then(postz => {  
+            let post = postz;
+            helper.makeRequest("users/").then(userPostz => {  
+                let userPost = userPostz;
                 post.forEach(element => {
                     let user;
                     userPost.forEach(user_element => {
