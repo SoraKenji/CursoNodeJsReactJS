@@ -25,7 +25,7 @@ switch(argumento1){
     case "comments":
         helper.makeRequest("comments/" + argumento2, function(err, res, body) {  
             let comment = JSON.parse(body);
-            helper.makeRequest("posts/"+post.userIdm, function(err, res, body) {  
+            helper.makeRequest("posts/"+comment.userIdm, function(err, res, body) {  
                 let userPost = JSON.parse(body);
                 post.user = userPost;
                 console.log(post);
