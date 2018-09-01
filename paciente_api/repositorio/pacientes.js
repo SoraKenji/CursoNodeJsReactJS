@@ -16,5 +16,16 @@ const getById = async (id) => {
     return resultado.rows[0];
 };
 
+const save = async (paciente) => {
+    const conexion = await conectar();
+    const query = `insert into pacientes (nombre, apellidos, edad)
+    values ($1, $2, $3) returning *`;
+    const values = [paciente.nombre, paciente.apellidos, paciente.edad];
+    const resultado = await conexion.query(query, values);
+    conexion.release();
+    return resultado.rows[0];
+};
+
+exports.save = save;
 exports.getById = getById;
 exports.getAll = getAll;
